@@ -25,45 +25,45 @@ void DisplayLeds(int val)
     // This leaves us with 9 leds, so we need to make 9 ranges
     // 4096 / 9 = ~455
 
-    if (val >= 4095)
+    if (val >= 455 * 9)
     {
-        GPIO_ptr->data = 1023; // 1023 = 0b1111111111
+        GPIO_ptr->data = 1023; // 0011 1111 1111
     }
-    else if (val >= 3640)
+    else if (val >= 455 * 8)
     {
-        GPIO_ptr->data = 511; // 511 = 0b111111111
+        GPIO_ptr->data = 511; // 0001 1111 1111
     }
-    else if (val >= 3185)
+    else if (val >= 455 * 7)
     {
-        GPIO_ptr->data = 255; // 255 = 0b11111111
+        GPIO_ptr->data = 255; // 1111 1111
     }
-    else if (val >= 2730)
+    else if (val >= 455 * 6)
     {
-        GPIO_ptr->data = 127; // 127 = 0b1111111
+        GPIO_ptr->data = 127; // 0111 1111
     }
-    else if (val >= 2275)
+    else if (val >= 455 * 5)
     {
-        GPIO_ptr->data = 63; // 63 = 0b111111
+        GPIO_ptr->data = 63; // 0011 1111
     }
-    else if (val >= 1820)
+    else if (val >= 455 * 4)
     {
-        GPIO_ptr->data = 31; // 31 = 0b11111
+        GPIO_ptr->data = 31; // 0001 1111
     }
-    else if (val >= 1365)
+    else if (val >= 455 * 3)
     {
-        GPIO_ptr->data = 15; // 15 = 0b1111
+        GPIO_ptr->data = 15; // 1111
     }
-    else if (val >= 910)
+    else if (val >= 455 * 2)
     {
-        GPIO_ptr->data = 7; // 7 = 0b111
+        GPIO_ptr->data = 7; // 0111
     }
     else if (val >= 455)
     {
-        GPIO_ptr->data = 3; // 3 = 0b11
+        GPIO_ptr->data = 3; // 0011
     }
     else if (val >= 1)
     {
-        GPIO_ptr->data = 1; // 1 = 0b1
+        GPIO_ptr->data = 1; // 0001
     }
     else
     {
@@ -86,7 +86,7 @@ int main(void)
     // Channels
     volatile int ch0, ch1;
 
-    GPIO_ptr->control = 0x3FF; // 0011 1111 1111 (set ports 0-9 to output, 10-11 to input)?
+    GPIO_ptr->control = 0x3FF; // 0011 1111 1111 (set ports 0-9 to output, 10-11 to input)
 
     // Variable to store data from ADC
     int data = 0;
